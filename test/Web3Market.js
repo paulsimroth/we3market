@@ -13,7 +13,7 @@ const ID = 1;
 const NAME = "Shoes";
 const CATEGORY = "Clothing";
 const IMAGE = "IMAGE LINK";
-const PRICE = 3;
+const PRICE = tokens(2);
 const RATING = 4;
 const STOCK = 5;
 
@@ -94,4 +94,34 @@ describe("Web3Market", () => {
 
   })
 
+  describe("Withdrawing", () => {
+    let balanceBefore
+
+    beforeEach(async () => {
+      // List item
+      let tx = await web3market.connect(deployer).list(ID, NAME, CATEGORY, IMAGE, PRICE, RATING, STOCK)
+      await tx.wait()
+
+      // Buy item
+      tx = await web3market.connect(buyer).buy(ID, { value: PRICE })
+      await tx.wait()
+
+      //Get deployer balance before
+      balanceBefore = await ethers.provider.getBalance(deployer.address)
+
+      //Withdraw
+      tx = await web3market.connect(deployer).withdraw()
+      await tx.wait()
+    })
+
+    it('Updates the owner balance', async () => {
+      const balanceAfter = await ethers.provider.getBalance(deployer.address)
+      expect(balanceAfter).to.be.greaterThan(balanceBefore)
+    })
+
+    it('Updates the contract balance', async () => {
+      const result = await ethers.provider.getBalance(web3market.address)
+      expect(result).to.equal(0)
+    })
+  })
 });
