@@ -81,6 +81,9 @@ contract Web3Market {
     }
 
     //Withdraw funds
-    function withdraw() public {}
+    function withdraw() public onlyOwner {
+        (bool success, ) = owner.call{value: address(this).balance}("");
+        require(success);
+    }
 
 }
