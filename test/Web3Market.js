@@ -23,12 +23,35 @@ describe("Web3Market", () => {
   describe("Deployment", () => {
 
     it("Sets owner", async () => {
-      expect(await web3market.owner().to.equal(deployer.address))
+      expect(await web3market.owner()).to.equal(deployer.address)
     })
 
-    it("has a name", async () => {
-      const name = await web3market.name()
-      expect(name).to.equal("Web3Market")
-    }) 
+  })
+
+  describe("Listing", () => {
+    let tx
+
+    const ID = 1
+    const NAME = "Shoes"
+    const CATEGORY = "Clothing"
+    const IMAGE = "IMAGE LINK"
+    const PRICE = 3
+    const RATING = 4
+    const STOCK = 5
+
+    beforeEach(async () => {
+      tx = await web3market.connect(deployer).list(
+        ID, NAME, CATEGORY, IMAGE, PRICE, RATING, STOCK
+      )
+
+      await tx.wait()
+      
+    })
+
+    it("Returns item attributes", async () => {
+      const item = await web3market.items(1)
+      expect(item.id).to.equal(ID)
+    })
+
   })
 });
