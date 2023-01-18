@@ -51,7 +51,18 @@ describe("Web3Market", () => {
     it("Returns item attributes", async () => {
       const item = await web3market.items(1)
       expect(item.id).to.equal(ID)
+      expect(item.name).to.equal(NAME)
+      expect(item.category).to.equal(CATEGORY)
+      expect(item.image).to.equal(IMAGE)
+      expect(item.price).to.equal(PRICE)
+      expect(item.rating).to.equal(RATING)
+      expect(item.stock).to.equal(STOCK)
+    })
+
+    it("Emits LIST Event", async () => {
+      expect(tx).to.emit(web3market, "List")
     })
 
   })
+
 });

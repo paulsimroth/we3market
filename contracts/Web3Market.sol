@@ -16,6 +16,13 @@ contract Web3Market {
 
     mapping(uint256 => Item) public items;
 
+    event List(string name, uint256 price, uint256 quantity);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only Owner is authorized");
+        _;
+    }
+
     constructor() {
         owner = msg.sender;
     }
@@ -29,13 +36,16 @@ contract Web3Market {
         uint256 price, 
         uint256 rating, 
         uint256 stock
-        ) public {
+        ) public onlyOwner{
         
         //Create Item
         Item memory item = Item(id, name, category, image, price, rating, stock);
 
         //Save Item to chain
         items[id] = item;
+
+        //Emit event
+        emit List(name, price, stock);
     }
 
     //Buy products
