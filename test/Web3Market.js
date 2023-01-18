@@ -5,15 +5,23 @@ const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether')
 }
 
-describe("Web3Market", () => {
 
-  let web3market;
-  let deployer, buyer;
+let web3market;
+let deployer, buyer;
+let tx;
+const ID = 1;
+const NAME = "Shoes";
+const CATEGORY = "Clothing";
+const IMAGE = "IMAGE LINK";
+const PRICE = 3;
+const RATING = 4;
+const STOCK = 5;
+
+describe("Web3Market", () => {
 
   beforeEach(async () => {
     //Setup Accounts
     [deployer, buyer] = await ethers.getSigners();
-    console.log("Deployer:", deployer.address, "||", "Buyer:", buyer.address);
     
     //Deploy Contracts
     const Web3Market = await ethers.getContractFactory("Web3Market")
@@ -29,23 +37,11 @@ describe("Web3Market", () => {
   })
 
   describe("Listing", () => {
-    let tx
-
-    const ID = 1
-    const NAME = "Shoes"
-    const CATEGORY = "Clothing"
-    const IMAGE = "IMAGE LINK"
-    const PRICE = 3
-    const RATING = 4
-    const STOCK = 5
 
     beforeEach(async () => {
-      tx = await web3market.connect(deployer).list(
-        ID, NAME, CATEGORY, IMAGE, PRICE, RATING, STOCK
-      )
-
+      //List an item
+      tx = await web3market.connect(deployer).list(ID, NAME, CATEGORY, IMAGE, PRICE, RATING, STOCK)
       await tx.wait()
-      
     })
 
     it("Returns item attributes", async () => {
@@ -61,6 +57,39 @@ describe("Web3Market", () => {
 
     it("Emits LIST Event", async () => {
       expect(tx).to.emit(web3market, "List")
+    })
+
+  })
+
+  describe("Buying", () => {
+
+    beforeEach(async () => {
+      //List an item
+      tx = await web3market.connect(deployer).list(ID, NAME, CATEGORY, IMAGE, PRICE, RATING, STOCK)
+      await tx.wait()
+
+      //Buy item
+      tx = await web3market.connect(buyer).buy(ID, {value: PRICE})
+    })
+
+    it("Updates contract balance", async () => {
+      const result = await ethers.provider.getBalance(web3market.address)
+      expect(result).to.equal(PRICE)
+    })
+
+    it("Updates order count", async () => {
+      const result = await web3market.orderCount(buyer.address)
+      expect(result).to.equal(1)
+    })
+
+    it("Adds order", async () => {
+      const order = await web3market.orders(buyer.address, 1)
+      expect(order.time).to.be.greaterThan(0)
+      expect(order.item.name).to.equal(NAME)
+    })
+
+    it("Emits BUY event", async () => {
+      expect(tx).to.emit(web3market, "Buy")
     })
 
   })

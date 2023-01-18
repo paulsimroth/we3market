@@ -14,9 +14,17 @@ contract Web3Market {
         uint256 stock;
     }
 
+    struct Order {
+        uint256 time;
+        Item item;
+    }
+
     mapping(uint256 => Item) public items;
+    mapping(address => uint256) public orderCount;
+    mapping(address => mapping(uint256 => Order)) public orders;
 
     event List(string name, uint256 price, uint256 quantity);
+    event Buy(address buyer, uint256 orderID, uint256 itemID);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only Owner is authorized");
@@ -49,7 +57,28 @@ contract Web3Market {
     }
 
     //Buy products
-    function buy() public {}
+    function buy(uint256 id) public payable {
+        
+        //Fetch item
+        Item memory item = items[id];
+
+        //Require
+        require(msg.value >= item.price, "Not enough ETH");
+        require(item.stock > 0, "Item not in stock");
+
+        //Create order
+        Order memory order = Order(block.timestamp, item);
+
+        //Save order to chain
+        orderCount[msg.sender]++;
+        orders[msg.sender][orderCount[msg.sender]] = order;
+
+        //Substract stock
+        items[id].stock = item.stock - 1;
+
+        //Emit event
+        emit Buy(msg.sender, orderCount[msg.sender], item.id);
+    }
 
     //Withdraw funds
     function withdraw() public {}
