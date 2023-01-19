@@ -7,7 +7,7 @@ import Section from './components/Section';
 import Product from './components/Product';
 
 // ABIs
-import Web3Market from './abis/Web3Market.json';
+import MarketABI from './abis/Web3Market.json';
 
 // Config
 import config from './config.json';
@@ -15,12 +15,49 @@ import config from './config.json';
 function App() {
   //useState
   const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [market, setMarket] = useState(null);
+
+  const [electronics, setElectronics] = useState(null);
+  const [clothing, setClothing] = useState(null);
+  const [toys, setToys] = useState(null);
+
+  const togglePop = () => {
+    console.log("Fortnite");
+  }
 
   //Loading items from blockchain
   const loadChainData = async () => {
-    const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
-    const account = ethers.utils.getAddress(accounts[0]);
-    setAccount(account);
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    setProvider(provider)
+
+    const network = await provider.getNetwork();
+
+    //Connect to smart contract
+    const instance = new ethers.Contract(
+      config[network.chainId].web3market.address, 
+      MarketABI, 
+      provider
+    );
+
+    setMarket(instance);
+    
+    //Load items
+    const items = []
+
+    for (let i = 0; i < 9; i++) {
+      const item = await instance.items(i+1);
+      items.push(item);
+    }
+
+    //set categories
+    const electronics = items.filter((item) => item.category === "electronics");
+    const clothing = items.filter((item) => item.category === "clothing");
+    const toys = items.filter((item) => item.category === "toys");
+
+    setElectronics(electronics);
+    setClothing(clothing);
+    setToys(toys);
   };
 
   //use Effect calls loading of items
@@ -32,7 +69,15 @@ function App() {
   return (
     <div>
       <Navigation account={account} setAccount={setAccount}/>
-      <h2>Welcome to Web3 Market</h2>
+      <h2>Best Sellers</h2>
+
+      {electronics && clothing && toys && (
+        <>
+          <Section title={"Clothing & Jewelry"} items={clothing} togglePop={togglePop} />
+          <Section title={"Electronics"} items={electronics} togglePop={togglePop} />
+          <Section title={"Gaming & Toys"} items={toys} togglePop={togglePop} />
+        </>
+      )}
 
     </div>
   );
