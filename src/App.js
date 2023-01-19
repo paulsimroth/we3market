@@ -22,8 +22,12 @@ function App() {
   const [clothing, setClothing] = useState(null);
   const [toys, setToys] = useState(null);
 
-  const togglePop = () => {
-    
+  const [item, setItem] = useState({});
+  const [toggle, setToggle] = useState(false);
+
+  const togglePop = (item) => {
+    setItem(item);
+    toggle ? setToggle(false) : setToggle(true);
   }
 
   //Loading items from blockchain
@@ -78,6 +82,8 @@ function App() {
           <Section title={"Games & Toys"} items={toys} togglePop={togglePop} />
         </>
       )}
+
+      
 
     </div>
   );
