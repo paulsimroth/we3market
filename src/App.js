@@ -23,7 +23,7 @@ function App() {
   const [toys, setToys] = useState(null);
 
   const togglePop = () => {
-    console.log("Fortnite");
+    
   }
 
   //Loading items from blockchain
@@ -75,7 +75,7 @@ function App() {
         <>
           <Section title={"Clothing & Jewelry"} items={clothing} togglePop={togglePop} />
           <Section title={"Electronics"} items={electronics} togglePop={togglePop} />
-          <Section title={"Gaming & Toys"} items={toys} togglePop={togglePop} />
+          <Section title={"Games & Toys"} items={toys} togglePop={togglePop} />
         </>
       )}
 

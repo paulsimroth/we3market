@@ -39,7 +39,7 @@ const Navigation = ({ account, setAccount }) => {
             <ul className="nav__links">
                 <li><a href="#Clothing & Jewelry">Clothing & Jewelry</a></li>
                 <li><a href="#Electronics">Electronics</a></li>
-                <li><a href="#Gaming & Toys">Gaming & Toys</a></li>
+                <li><a href="#Games & Toys">Games & Toys</a></li>
             </ul>
         </nav>
     );
