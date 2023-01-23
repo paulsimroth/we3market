@@ -18,10 +18,8 @@ As this project is currently not deployed on a network please follow the followi
 
 1. make sure you installed all dependencies
 ```$ npm install```
-<br/>
 2. start your local hardhat node: 
 ```$ npx hardhat node```
-<br/>
 3. deploy the contract: 
 ```$ npx hardhat run ./scripts/deploy.js --network localhost``` 
 
