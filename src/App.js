@@ -83,7 +83,9 @@ function App() {
         </>
       )}
 
-      
+      {toggle && (
+        <Product item={item} provider={provider} account={account} market={market} togglePop={togglePop}/>
+      )}
 
     </div>
   );
