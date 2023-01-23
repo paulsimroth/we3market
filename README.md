@@ -16,9 +16,11 @@ You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list
 
 As this project is currently not deployed on a network please follow the following steps
 
-- 1. make sure you installed all dependencies
-- 2. start your local hardhat node: ```npx hardhat node```
-- 3. deploy the contract: ```npx hardhat run ./scripts/deploy.js --network localhost```
+1. make sure you installed all dependencies
+2. start your local hardhat node: 
+```npx hardhat node```
+3. deploy the contract: 
+```npx hardhat run ./scripts/deploy.js --network localhost```
 
 
 ## Disclaimer
