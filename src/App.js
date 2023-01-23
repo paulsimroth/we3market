@@ -32,8 +32,8 @@ function App() {
 
   //Loading items from blockchain
   const loadChainData = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    setProvider(provider)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(provider);
 
     const network = await provider.getNetwork();
 
@@ -47,12 +47,12 @@ function App() {
     setMarket(instance);
     
     //Load items
-    const items = []
+    const items = [];
 
     for (let i = 0; i < 9; i++) {
       const item = await instance.items(i+1);
       items.push(item);
-    }
+    };
 
     //set categories
     const electronics = items.filter((item) => item.category === "electronics");
