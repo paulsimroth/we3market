@@ -12,5 +12,14 @@ You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list
 - [Ethers.js](https://docs.ethers.io/v5/) (Blockchain Interaction)
 - [React.js](https://reactjs.org/) (Frontend Framework)
 
+## How it works
+
+As this project is currently not deployed on a network please follow the following steps
+
+- 1. make sure you installed all dependencies
+- 2. start your local hardhat node: ```npx hardhat node```
+- 3. deploy the contract: ```npx hardhat run ./scripts/deploy.js --network localhost```
+
+
 ## Disclaimer
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
