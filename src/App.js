@@ -50,7 +50,7 @@ function App() {
     const items = [];
 
     for (let i = 0; i < 9; i++) {
-      const item = await instance.items(i+1);
+      const item = await instance.items(i + 1);
       items.push(item);
     };
 
