@@ -16,7 +16,7 @@ function App() {
   //useState
   const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
-  const [market, setMarket] = useState(null);
+  const [instance, setInstance] = useState(null);
 
   const [electronics, setElectronics] = useState(null);
   const [clothing, setClothing] = useState(null);
@@ -44,7 +44,7 @@ function App() {
       provider
     );
 
-    setMarket(instance);
+    setInstance(instance);
     
     //Load items
     const items = [];
@@ -64,7 +64,7 @@ function App() {
     setToys(toys);
   };
 
-  //use Effect calls loading of items
+  //useEffect calls loading of items
   useEffect(() => {
     loadChainData()
   }, []);
@@ -84,7 +84,7 @@ function App() {
       )}
 
       {toggle && (
-        <Product item={item} provider={provider} account={account} market={market} togglePop={togglePop}/>
+        <Product item={item} provider={provider} account={account} market={instance} togglePop={togglePop}/>
       )}
 
     </div>

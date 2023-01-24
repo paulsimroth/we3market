@@ -34,13 +34,13 @@ async function main() {
       tokens(items[i].price),
       items[i].rating,
       items[i].stock,
-    )
+    );
 
-    await tx.wait()
+    await tx.wait();
 
     //After listing log items to console
     console.log(`Item listed ${items[i].id}: ${items[i].name}\n`);
-  }
+  };
 
 };
 

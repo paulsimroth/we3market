@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+import { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
 
 // Components
-import Rating from './Rating'
+import Rating from './Rating';
 
-import close from '../assets/close.svg'
+import close from '../assets/close.svg';
 
 const Product = ({ item, provider, account, market, togglePop }) => {
 
   const [order, setOrder] = useState(null);
-  const [hasBought, setHasBought] = useState(null);
+  const [hasBought, setHasBought] = useState(false);
 
   const fetchDetails = async () => {
-    const events = await market.queryFilter("Buy")
+    const events = await market.queryFilter("Buy");
     const orders = events.filter(
       (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
-    )
+    );
 
     if (orders.length === 0) return;
 
@@ -23,18 +23,20 @@ const Product = ({ item, provider, account, market, togglePop }) => {
     setOrder(order);
   };
 
-  useEffect(() => {
-    fetchDetails()
-  }, [hasBought]);
-
   const buyHandler = async () => {
     const signer = await provider.getSigner();
     const user = await market.connect(signer);
-    const tx = await user.buy(item.id, {value: item.price});
-    const receipt = await tx.wait();
-    console.log(receipt);
+    let tx = await user.buy(item.id, {value: item.price});
+    let receipt = await tx.wait();
+
+    console.log("buyHandler; receipt: ", receipt);
+
     setHasBought(true);
   };
+
+  useEffect(() => {
+    fetchDetails()
+  }, [hasBought]);
 
   return (
     <div className="product">
