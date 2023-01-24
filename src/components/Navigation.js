@@ -3,8 +3,10 @@ import { ethers } from 'ethers';
 const Navigation = ({ account, setAccount }) => {
 
     const connectHandler = async () => {
-        const accounts = await window.ethereum.request({"method": "eth_requestAccounts"});
-        const account = ethers.utils.getAddress(accounts[0]);
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const user = provider.getSigner();
+        const account = await user.getAddress();
         setAccount(account);
     };
 

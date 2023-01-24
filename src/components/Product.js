@@ -25,26 +25,15 @@ const Product = ({ item, provider, account, market, togglePop }) => {
 
   useEffect(() => {
     fetchDetails()
-  }, [hasBought])
+  }, [hasBought]);
 
   const buyHandler = async () => {
     const signer = await provider.getSigner();
-
-    try {
-
-      const buyer = await market.connect(signer);
-      const tx = await buyer.buy(item.id, {value: item.price});
-      const receipt = await tx.wait();
-      console.log(receipt);
-      setHasBought(true);
-
-    } catch (e) {
-
-      console.log(e.message);
-
-    }
-    
-
+    const user = await market.connect(signer);
+    const tx = await user.buy(item.id, {value: item.price});
+    const receipt = await tx.wait();
+    console.log(receipt);
+    setHasBought(true);
   };
 
   return (
@@ -114,7 +103,7 @@ const Product = ({ item, provider, account, market, togglePop }) => {
         <button onClick={togglePop} className="product__close">
           <img src={close} alt="close"/>
         </button>
-        
+
       </div>
     </div >
   );
