@@ -14,7 +14,7 @@ const Product = ({ item, provider, account, market, togglePop }) => {
   const fetchDetails = async () => {
     const events = await market.queryFilter("Buy");
     const orders = events.filter(
-      (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
+      (event) => event.args.buyer === account && event.args.itemId === item.id
     );
 
     if (orders.length === 0) return;
