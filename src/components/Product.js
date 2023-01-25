@@ -12,19 +12,28 @@ const Product = ({ item, provider, account, instance, togglePop }) => {
   const [purchase, setPurchase] = useState(false);
 
   const fetchDetails = async () => {
-    const events = await instance.queryFilter("Buy");
-    const orders = events.filter(
-      (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
-    );
+    instance.on("Buy", async (from, orderID, itemID) => {
+      let events = {
+        buyer: from,
+        orderId: orderID,
+        itemId: itemID,
+      }
+      console.log(events);
+/*       const orders = events.filter(
+        (event) => event.buyer == account && event.itemId.toString() == item.id.toString()
+      );
+      console.log("orders: ", orders);
 
-    if (orders.length === 0) return;
+      if (orders.length === 0) return;
 
-    const order = await instance.orders(account, orders[0].args.orderId);
-    setOrder(order);
+      const order = await instance.orders(account, orders[0].args.orderId);
+      setOrder(order); */
+    });
   };
 
   const buyHandler = async () => {
     const signer = await provider.getSigner();
+
     let tx = await instance.connect(signer).buy(item.id, {value: item.price});
     await tx.wait();
 
@@ -72,9 +81,9 @@ const Product = ({ item, provider, account, instance, togglePop }) => {
           </p>
 
           {item.stock > 0 ? (
-            <p>In Stock</p>
+            <p><strong>In Stock</strong></p>
           ) : (
-            <p>Out of Stock</p>
+            <p className='red_msg'><strong>Out of Stock</strong></p>
           )}
 
           <button className='product__buy' onClick={buyHandler}>

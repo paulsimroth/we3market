@@ -315,6 +315,10 @@ nav {
   border: 1px solid var(--clr-grey);
 }
 
+.red_msg {
+  color: red;
+}
+
 @media screen and (max-width: 992px) {
   .product__details {
     height: 95%;

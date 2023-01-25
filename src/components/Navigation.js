@@ -7,7 +7,6 @@ const Navigation = ({ account, setAccount }) => {
         await provider.send("eth_requestAccounts", []);
         const user = provider.getSigner();
         const account = await user.getAddress();
-        console.log("connectHandler; Account: ", account);
         setAccount(account);
     };
 
