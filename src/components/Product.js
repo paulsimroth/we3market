@@ -12,23 +12,15 @@ const Product = ({ item, provider, account, instance, togglePop }) => {
   const [purchase, setPurchase] = useState(false);
 
   const fetchDetails = async () => {
-    instance.on("Buy", async (from, orderID, itemID) => {
-      let events = {
-        buyer: from,
-        orderId: orderID,
-        itemId: itemID,
-      }
-      console.log(events);
-/*       const orders = events.filter(
-        (event) => event.buyer == account && event.itemId.toString() == item.id.toString()
-      );
-      console.log("orders: ", orders);
+    const events = await instance.queryFilter("Buy");
+    const orders = events.filter(
+      (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
+    );
 
-      if (orders.length === 0) return;
+    if (orders.length === 0) return;
 
-      const order = await instance.orders(account, orders[0].args.orderId);
-      setOrder(order); */
-    });
+    const order = await instance.orders(account, orders[0].args.orderId);
+    setOrder(order);
   };
 
   const buyHandler = async () => {
