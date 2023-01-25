@@ -6,37 +6,34 @@ import Rating from './Rating';
 
 import close from '../assets/close.svg';
 
-const Product = ({ item, provider, account, market, togglePop }) => {
+const Product = ({ item, provider, account, instance, togglePop }) => {
 
   const [order, setOrder] = useState(null);
-  const [hasBought, setHasBought] = useState(false);
+  const [purchase, setPurchase] = useState(false);
 
   const fetchDetails = async () => {
-    const events = await market.queryFilter("Buy");
+    const events = await instance.queryFilter("Buy");
     const orders = events.filter(
-      (event) => event.args.buyer === account && event.args.itemId === item.id
+      (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
     );
 
     if (orders.length === 0) return;
 
-    const order = await market.orders(account, orders[0].args.orderId);
+    const order = await instance.orders(account, orders[0].args.orderId);
     setOrder(order);
   };
 
   const buyHandler = async () => {
     const signer = await provider.getSigner();
-    const user = await market.connect(signer);
-    let tx = await user.buy(item.id, {value: item.price});
-    let receipt = await tx.wait();
+    let tx = await instance.connect(signer).buy(item.id, {value: item.price});
+    await tx.wait();
 
-    console.log("buyHandler; receipt: ", receipt);
-
-    setHasBought(true);
+    setPurchase(true);
   };
 
   useEffect(() => {
     fetchDetails()
-  }, [hasBought]);
+  }, [purchase]);
 
   return (
     <div className="product">
@@ -60,7 +57,9 @@ const Product = ({ item, provider, account, market, togglePop }) => {
 
           <h2>Overview</h2>
 
-          <p>{item.description}</p>
+          <p>
+            {item.description}
+          </p>
         </div>
 
         <div className='product__order'>
@@ -82,7 +81,7 @@ const Product = ({ item, provider, account, market, togglePop }) => {
             Buy NOW
           </button>
 
-          <p><small>Ships from</small> Web3 Shop</p>
+          <p><small>Ships from</small> Web3 Shop Warehouse</p>
           <p><small>Sold by</small> Web3 Shop</p>
           
           {order && (
@@ -103,7 +102,7 @@ const Product = ({ item, provider, account, market, togglePop }) => {
         </div>
 
         <button onClick={togglePop} className="product__close">
-          <img src={close} alt="close"/>
+          <img src={close} alt="Close"/>
         </button>
 
       </div>

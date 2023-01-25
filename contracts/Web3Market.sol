@@ -35,12 +35,6 @@ contract Web3Market {
         owner = msg.sender;
     }
 
-    /*
-    FALLBACK FUNCTIONS
-    */
-    receive() external payable {} 
-    fallback() external payable {}
-
     //List products
     function list(
         uint256 id, 

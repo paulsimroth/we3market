@@ -16,12 +16,14 @@ You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list
 
 As this project is currently not deployed on a network please follow the following steps
 
-1. make sure you installed all dependencies
+1. make sure you installed all dependencies:
 ```$ npm install```
 2. start your local hardhat node: 
 ```$ npx hardhat node```
 3. deploy the contract: 
-```$ npx hardhat run ./scripts/deploy.js --network localhost``` 
+```$ npx hardhat run ./scripts/deploy.js --network localhost```
+4. start frontend:
+```npm run start```
 
 ## Disclaimer
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
