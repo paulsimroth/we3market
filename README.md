@@ -14,7 +14,7 @@ You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list
 
 ## How it works
 
-As this project is currently not deployed on a network please follow the following steps
+As this project is currently not deployed on a network please follow the following steps.
 
 1. make sure you installed all dependencies:
 ```$ npm install```
