@@ -14,12 +14,12 @@ const Product = ({ item, provider, account, instance, togglePop }) => {
   const fetchDetails = async () => {
     const chainEvents = await instance.queryFilter("Buy");
     const orderEvents = chainEvents.filter(
-      (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
+      (event) => event.args.buyer === account && event.args.itemID.toString() === item.id.toString()
     );
     
     if (orderEvents.length === 0) return;
-      console.log(orderEvents);
-    const orderTx = await instance.orders(account, orderEvents[0].args.orderId);
+    
+    const orderTx = await instance.orders(account, orderEvents[0].args.orderID);
     setOrder(orderTx);
   };
 
@@ -87,7 +87,7 @@ const Product = ({ item, provider, account, instance, togglePop }) => {
           
           {order && (
             <div className='product__bought'>
-              Item bought on <br/>
+              Item bought on: <br/>
               <strong>
                 {new Date(Number(order.time.toString() + "000")).toLocaleDateString(
                   undefined, {

@@ -13,10 +13,10 @@ import MarketABI from './abis/Web3Market.json';
 import config from './config.json';
 
 function App() {
-  //useState
-  const [account, setAccount] = useState(null);
+  //state hooks
   const [provider, setProvider] = useState(null);
   const [instance, setInstance] = useState(null);
+  const [account, setAccount] = useState(null);
 
   const [electronics, setElectronics] = useState(null);
   const [clothing, setClothing] = useState(null);
@@ -25,6 +25,7 @@ function App() {
   const [item, setItem] = useState({});
   const [toggle, setToggle] = useState(false);
 
+  //toggles item pop ups
   const togglePop = (item) => {
     setItem(item);
     toggle ? setToggle(false) : setToggle(true);
@@ -38,19 +39,19 @@ function App() {
     const network = await provider.getNetwork();
 
     //Connect to smart contract
-    const instance = new ethers.Contract(
+    const contract = new ethers.Contract(
       config[network.chainId].web3market.address, 
       MarketABI, 
       provider
     );
 
-    setInstance(instance);
+    setInstance(contract);
     
     //Load items
     const items = [];
 
     for (let i = 0; i < 9; i++) {
-      const item = await instance.items(i + 1);
+      const item = await contract.items(i + 1);
       items.push(item);
     };
 
