@@ -7,7 +7,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/camera.jpg",
       "price": "1",
       "rating": 4,
-      "stock": 10
+      "stock": 100
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/drone.jpg",
       "price": "2",
       "rating": 5,
-      "stock": 6
+      "stock": 60
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/headset.jpg",
       "price": "0.25",
       "rating": 2,
-      "stock": 24
+      "stock": 240
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/shoes.jpg",
       "price": "0.25",
       "rating": 5,
-      "stock": 3
+      "stock": 30
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/sunglasses.jpg",
       "price": "0.10",
       "rating": 4,
-      "stock": 12
+      "stock": 120
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/watch.jpg",
       "price": "1.25",
       "rating": 4,
-      "stock": 0
+      "stock": 35
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/cube.jpg",
       "price": "0.05",
       "rating": 4,
-      "stock": 15
+      "stock": 150
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/train.jpg",
       "price": "0.20",
       "rating": 4,
-      "stock": 0
+      "stock": 80
     },
     {
       "id": 9,
@@ -79,7 +79,7 @@
       "image": "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/robots.jpg",
       "price": "0.15",
       "rating": 3,
-      "stock": 12
+      "stock": 120
     }
   ]
 }
