@@ -2,7 +2,8 @@
 
 This project is a Web3 Marketplace inspired by Amazon.
 For this project I followed the YouTube tutorial by "Dapp University". 
-You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list=PLk7ZYbFb3ivvE6VfcjVC3GLFKEc3dxF3u&index=92)
+You can find the video here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list=PLk7ZYbFb3ivvE6VfcjVC3GLFKEc3dxF3u&index=92)
+This project is now deployed on Goerli Testnet. 
 
 ## Technology Stack & Tools
 
@@ -14,15 +15,18 @@ You can find it here: [YouTube](https://www.youtube.com/watch?v=X1ahXNYkpL8&list
 
 ## How it works
 
-As this project is currently not deployed on a network please follow the following steps.
+If you want to try it out yourself follow this [Link](https://paulsimroth.github.io/web3market/)
 
-1. make sure you installed all dependencies:
+If you want to clone the repo and use it in your local environment follow these steps.
+
+1. clone this repository
+2. make sure you installed all dependencies:
 ```$ npm install```
-2. start your local hardhat node: 
+3. start your local hardhat node: 
 ```$ npx hardhat node```
-3. deploy the contract: 
+4. deploy the contract: 
 ```$ npx hardhat run ./scripts/deploy.js --network localhost```
-4. start frontend:
+5. start frontend:
 ```npm run start```
 
 ## Disclaimer
