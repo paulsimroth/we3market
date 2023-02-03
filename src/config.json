@@ -1,4 +1,10 @@
-{
+{   
+    "5": {
+        "web3market": {
+            "address": "0x1d5b4191d366cc74a6e7c449c92034bc10a9ed48"
+        }
+    },
+
     "31337": {
         "web3market": {
             "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
