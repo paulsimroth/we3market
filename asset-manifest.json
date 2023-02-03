@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/web3shop/static/css/main.dbe98739.css",
+    "main.js": "/web3shop/static/js/main.3957de4a.js",
+    "static/js/787.7dd70c1f.chunk.js": "/web3shop/static/js/787.7dd70c1f.chunk.js",
+    "static/media/star-regular.svg": "/web3shop/static/media/star-regular.4ff5d2ba9143bd0557fce03503a4b485.svg",
+    "index.html": "/web3shop/index.html",
+    "static/media/star-solid.svg": "/web3shop/static/media/star-solid.26555deeac8fd8a896323c2036ea786a.svg",
+    "static/media/close.svg": "/web3shop/static/media/close.ae469738e479d31aa952364e12120ad2.svg",
+    "main.dbe98739.css.map": "/web3shop/static/css/main.dbe98739.css.map",
+    "main.3957de4a.js.map": "/web3shop/static/js/main.3957de4a.js.map",
+    "787.7dd70c1f.chunk.js.map": "/web3shop/static/js/787.7dd70c1f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbe98739.css",
+    "static/js/main.3957de4a.js"
+  ]
+}
