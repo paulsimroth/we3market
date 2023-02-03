@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://paulsimroth.github.io/web3shop",
+  "homepage": "http://paulsimroth.github.io/web3market",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
